@@ -40,6 +40,7 @@ class Counter extends Component {
         );
     }
 }
+// add mapStateToProps
 const mapStateToProps=state=>{
     return {
         ctr:state.counter
