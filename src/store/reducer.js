@@ -1,37 +1,39 @@
+import * as actionTpyes from './actions';
+ 
 const initialState = {
 	counter: 0,
 	results: []
 }
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case ('INCREMENT'):
+		case actionTpyes.INCREMENT:
 			const newState = Object.assign({}, state);
 			newState.counter = state.counter + 1
 			return newState
 
-		case ('ADD'):
+		case actionTpyes.ADD:
 			return {
 				...state,
 				counter: state.counter + action.val
 			}
 
-		case ('DECREMENT'):
+		case actionTpyes.DECREMENT:
 			return {
 				...state,
 				counter: state.counter - 1
 			}
 
-		case ('SUBSTRACT'):
+		case actionTpyes.SUBTRACT:
 			return {
 				...state,
 				counter: state.counter - action.val
 			}
-		case ('STORE_RESULT'):
+		case actionTpyes.STORE_RESULT:
 			return {
 				...state,
 				results: state.results.concat({ id: new Date(), value: state.counter })
 			}
-		case ('DELETE_RESULT'):
+		case actionTpyes.DELETE_RESULT:
 			// const id = 2;
 			// const newArray = [ ...state.results ];
 			// newArray.splice(id, 1)
