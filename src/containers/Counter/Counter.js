@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
+import * as actionTpyes from '../../store/actions';
+import { act } from 'react-dom/test-utils';
 
 class Counter extends Component {
     state = {
@@ -59,12 +61,12 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        onIncrementCounter: () => dispatch({ type: 'INCREMENT' }),
-        onAddCounter: () => dispatch({ type: 'ADD',val:10 }),
-        onDecrementCounter: () => dispatch({ type: 'DECREMENT' }),
-        onSubtractCounter: () => dispatch({ type: 'SUBSTRACT',val:15 }),
-        onStoreResult:()=>dispatch({type:'STORE_RESULT'}),
-        onDeleteResult:(id)=>dispatch({type:'DELETE_RESULT',resultElId:id})
+        onIncrementCounter: () => dispatch({ type: actionTpyes.INCREMENT}),
+        onAddCounter: () => dispatch({ type: actionTpyes.ADD,val:10 }),
+        onDecrementCounter: () => dispatch({ type: actionTpyes.DECREMENT }),
+        onSubtractCounter: () => dispatch({ type: actionTpyes.SUBTRACT,val:15 }),
+        onStoreResult:()=>dispatch({type:actionTpyes.STORE_RESULT}),
+        onDeleteResult:(id)=>dispatch({type:actionTpyes.DELETE_RESULT,resultElId:id})
     }
 }
 
