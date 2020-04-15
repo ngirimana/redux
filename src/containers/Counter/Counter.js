@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 import * as actionTpyes from '../../store/actions';
-import { act } from 'react-dom/test-utils';
+
 
 class Counter extends Component {
     state = {
@@ -40,7 +40,7 @@ class Counter extends Component {
                 <CounterControl label="Add 10" clicked={ this.props.onAddCounter } />
                 <CounterControl label="Subtract - 15" clicked={ this.props.onSubtractCounter } />
                 <hr/>
-                <button onClick={this.props.onStoreResult}>Store Ressult</button>
+                <button onClick={()=>this.props.onStoreResult(this.props.ctr)}>Store Ressult</button>
                 <ul>
                     {this.props.storedResults.map(strResult=>(
                         <li key={strResult.id}onClick={()=>this.props.onDeleteResult(strResult.id)}>{strResult.value}</li>
@@ -55,8 +55,8 @@ class Counter extends Component {
 // add mapStateToProps
 const mapStateToProps = state => {
     return {
-        ctr: state.counter,
-        storedResults:state.results
+        ctr: state.ctr.counter,
+        storedResults:state.res.results
     };
 };
 const mapDispatchToProps = dispatch => {
@@ -65,7 +65,7 @@ const mapDispatchToProps = dispatch => {
         onAddCounter: () => dispatch({ type: actionTpyes.ADD,val:10 }),
         onDecrementCounter: () => dispatch({ type: actionTpyes.DECREMENT }),
         onSubtractCounter: () => dispatch({ type: actionTpyes.SUBTRACT,val:15 }),
-        onStoreResult:()=>dispatch({type:actionTpyes.STORE_RESULT}),
+        onStoreResult:(result)=>dispatch({type:actionTpyes.STORE_RESULT,result:result}),
         onDeleteResult:(id)=>dispatch({type:actionTpyes.DELETE_RESULT,resultElId:id})
     }
 }

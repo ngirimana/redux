@@ -1,8 +1,7 @@
-import * as actionTpyes from './actions';
- 
+import * as actionTpyes from '../actions';
+
 const initialState = {
-	counter: 0,
-	results: []
+	counter: 0
 }
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -28,20 +27,7 @@ const reducer = (state = initialState, action) => {
 				...state,
 				counter: state.counter - action.val
 			}
-		case actionTpyes.STORE_RESULT:
-			return {
-				...state,
-				results: state.results.concat({ id: new Date(), value: state.counter })
-			}
-		case actionTpyes.DELETE_RESULT:
-			// const id = 2;
-			// const newArray = [ ...state.results ];
-			// newArray.splice(id, 1)
-			const updatedArray=state.results.filter(result=> result.id!== action.resultElId)
-			return {
-				...state,
-				results: updatedArray
-			}
+		
 		default:
 
 	}
