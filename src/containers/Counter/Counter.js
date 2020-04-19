@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actionCreators from  '../../store/actions/actions'
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
-import * as actionTpyes from '../../store/actions';
+
 
 
 class Counter extends Component {
@@ -38,7 +39,7 @@ class Counter extends Component {
                 <CounterControl label="Increment" clicked={ this.props.onIncrementCounter } />
                 <CounterControl label="Decrement" clicked={ this.props.onDecrementCounter } />
                 <CounterControl label="Add 10" clicked={ this.props.onAddCounter } />
-                <CounterControl label="Subtract - 15" clicked={ this.props.onSubtractCounter } />
+                <CounterControl label="Subtract - 5" clicked={ this.props.onSubtractCounter } />
                 <hr/>
                 <button onClick={()=>this.props.onStoreResult(this.props.ctr)}>Store Ressult</button>
                 <ul>
@@ -61,12 +62,12 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        onIncrementCounter: () => dispatch({ type: actionTpyes.INCREMENT}),
-        onAddCounter: () => dispatch({ type: actionTpyes.ADD,val:10 }),
-        onDecrementCounter: () => dispatch({ type: actionTpyes.DECREMENT }),
-        onSubtractCounter: () => dispatch({ type: actionTpyes.SUBTRACT,val:15 }),
-        onStoreResult:(result)=>dispatch({type:actionTpyes.STORE_RESULT,result:result}),
-        onDeleteResult:(id)=>dispatch({type:actionTpyes.DELETE_RESULT,resultElId:id})
+        onIncrementCounter: () => dispatch(actionCreators.increment()),
+        onAddCounter: () => dispatch(actionCreators.add(10)),
+        onDecrementCounter: () => dispatch(actionCreators.decrement()),
+        onSubtractCounter: () => dispatch(actionCreators.subtract(5)),
+        onStoreResult:(result)=>dispatch(actionCreators.storeResult(result)),
+        onDeleteResult:(id)=>dispatch(actionCreators.deleteResult(id))
     }
 }
 
