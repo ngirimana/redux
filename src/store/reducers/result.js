@@ -1,4 +1,4 @@
-import * as actionTpyes from '../actions';
+import * as actionTpyes from '../actions/actions';
  
 const initialState = {
 
